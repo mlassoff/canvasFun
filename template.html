@@ -30,6 +30,11 @@
               ctx.canvas.height = window.innerHeight;
               drawBall();
               var interval = setInterval(draw, 10);
+              cnv.addEventListener('click', function()
+                                   {
+                                       speedX *= -1;
+                                       speedY *= -1;
+                                   }, false);
         }
         
         function draw()
