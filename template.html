@@ -17,6 +17,10 @@
         <script>
         var cnv;
         var ctx;
+        var xPos=75;
+        var yPos=75;
+        var speedX = 1;
+        var speedY = 1;
             
         window.onload=function()
         {
@@ -25,13 +29,34 @@
               ctx.canvas.width = window.innerWidth;
               ctx.canvas.height = window.innerHeight;
               drawBall();
+              var interval = setInterval(draw, 10);
+        }
+        
+        function draw()
+        {
+             if(xPos < window.innerWidth && xPos > 0){
+                xPos += speedX;
+             } else
+             {
+                speedX *= -1;   
+                  xPos += speedX;
+             }
+             if(yPos < window.innerHeight && yPos > 0){
+                yPos += speedY;
+             } else
+             {
+                speedY *= -1;
+                 yPos += speedY;
+             }  
+            drawBall();
         }
         
         function drawBall()
         {
+            ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
             ctx.fillStyle = "rgb(255,255,0)";
             ctx.beginPath();
-            ctx.arc(75,75,10,0, Math.PI*2, true);
+            ctx.arc(xPos,yPos,10,0, Math.PI*2, true);
             ctx.closePath();
             ctx.fill();
         }
